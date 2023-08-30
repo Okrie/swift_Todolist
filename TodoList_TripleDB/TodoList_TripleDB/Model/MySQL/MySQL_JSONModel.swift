@@ -2,6 +2,9 @@
 //  JSONModel.swift
 //  TodoList_TripleDB
 //
+//  Mysql Json 형식으로 변환한 Model
+//
+//
 //  Created by Okrie on 2023/08/28.
 //
 

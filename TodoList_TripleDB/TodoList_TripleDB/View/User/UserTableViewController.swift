@@ -2,6 +2,9 @@
 //  UserTableViewController.swift
 //  TodoList_TripleDB
 //
+//  유저 중 공유한 유저의 리스트 중 공유한 일정들을 보여주는 뷰
+//  해당 유저의 일정 중 isshare 값이 1 인 경우인 유저만 노출
+//
 //  Created by Okrie on 2023/08/26.
 //
 

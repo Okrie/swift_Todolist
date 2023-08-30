@@ -2,6 +2,9 @@
 //  UserTableViewCell.swift
 //  TodoList_TripleDB
 //
+//  유저 중 공유한 유저의 리스트 중 공유한 일정을 보여주는 뷰
+//  공유한 일정의 정보를 연결시켜주는 Cell
+//
 //  Created by Okrie on 2023/08/29.
 //
 

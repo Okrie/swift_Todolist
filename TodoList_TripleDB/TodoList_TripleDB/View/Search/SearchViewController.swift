@@ -2,6 +2,10 @@
 //  SearchViewController.swift
 //  TodoList_TripleDB
 //
+//  Todolist 일정 검색을 위한 뷰
+//  SearchBar를 이용하여 DB에서 가져온 일정 정보를 Extension으로 filtering 된 값만 보여줌
+//  초기에는 전체 리스트를 보여주며, 검색한 값을 실시간으로 변경 및 구성하여 뷰에 노출
+//
 //  Created by Okrie on 2023/08/26.
 //
 

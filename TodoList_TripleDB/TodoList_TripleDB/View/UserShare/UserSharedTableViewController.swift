@@ -2,6 +2,10 @@
 //  UserSharedTableViewController.swift
 //  TodoList_TripleDB
 //
+//  유저 중 공유한 유저의 리스트를 보여주는 뷰
+//  db에서 isshare값이 1인 유저만 노출시켜주며
+//  유저's Todolist 로 노출
+//
 //  Created by Okrie on 2023/08/26.
 //
 

@@ -2,6 +2,10 @@
 //  MyAddViewController.swift
 //  TodoList_TripleDB
 //
+//  Todolist 일정 추가를 위한 뷰
+//  각 정보를 입력 받아 db에 내용 추가
+//  이미지 업로드를 위한 extension 선언 및 구현
+//
 //  Created by Okrie on 2023/08/26.
 //
 

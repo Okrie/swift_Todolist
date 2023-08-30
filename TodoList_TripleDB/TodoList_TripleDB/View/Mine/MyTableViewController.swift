@@ -2,6 +2,10 @@
 //  MyTableViewController.swift
 //  TodoList_TripleDB
 //
+//  Todolist 일정 메인뷰
+//  진입할때 데이터를 db에서 불러와 구성에 맞게 데이터를 노출
+//  db에서 일정 삭제한 invalidate 값이 0이 아닌 데이터만 가져옴
+//
 //  Created by Okrie on 2023/08/26.
 //
 

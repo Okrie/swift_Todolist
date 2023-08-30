@@ -2,6 +2,9 @@
 //  TodoList.swift
 //  TodoList_TripleDB
 //
+//  MySql Todolist Model
+//
+//
 //  Created by Okrie on 2023/08/27.
 //
 

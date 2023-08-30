@@ -2,6 +2,9 @@
 //  TodoList.swift
 //  TodoList_TripleDB
 //
+//  SQLite3 Todolist Model
+//
+//
 //  Created by Okrie on 2023/08/26.
 //
 

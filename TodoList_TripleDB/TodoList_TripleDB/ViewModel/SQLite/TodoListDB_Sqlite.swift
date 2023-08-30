@@ -2,6 +2,12 @@
 //  TodoListDB.swift
 //  TodoList_TripleDB
 //
+//  SQLite 사용을 위한 ViewModel
+//  일정을 SQLite에 insert, select, update를 하기 위한 뷰모델
+//  extension 으로 사용하기 위해 protocol로 선언하여 사용
+//  delete구문이 없는 이유는 완전 삭제가 아닌 히스토리를 남기기 위해 update를 통해 invalidate 값만 변경하여 관리
+//  유저는 SQLite 로 관리 하지 않음
+//
 //  Created by Okrie on 2023/08/26.
 //
 

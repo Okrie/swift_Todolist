@@ -2,6 +2,11 @@
 //  LoginViewController.swift
 //  TodoList_TripleDB
 //
+//  Login 화면 구성
+//  id, pw 비었는지 확인하여 존재 할 시 요청을 보내서 정보 맞는지 확인 후 있으면 MainView로 이동
+//  만약 아이디, 비번이 맞지 않는다면 오류 alert 노출
+//  없는 유저를 위한 Register 버튼 구현 및 이동
+//
 //  Created by Okrie on 2023/08/28.
 //
 

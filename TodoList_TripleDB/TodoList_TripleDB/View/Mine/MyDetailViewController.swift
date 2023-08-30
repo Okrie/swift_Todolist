@@ -2,6 +2,13 @@
 //  DetailViewController.swift
 //  TodoList_TripleDB
 //
+//  Todolist 일정 상세 정보 보는 뷰
+//  각 정보를 db에서 가져와서 각 항목에 맞게 뿌려줌
+//  switch 로 일정 공유 가능 / 불가능 기능 구현
+//  각 title, content, image 변경 기능 구현
+//  update 버튼으로 해당 값들 db에 업데이트
+//  delete 버튼으로 해당 일정을 db에 invalidate 값 변경하여 노출 안되게 함
+//
 //  Created by Okrie on 2023/08/26.
 //
 

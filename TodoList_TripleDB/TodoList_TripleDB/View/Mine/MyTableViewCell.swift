@@ -2,6 +2,9 @@
 //  MyTableViewCell.swift
 //  TodoList_TripleDB
 //
+//  Todolist 메인 뷰에 할당된 Cell에 이미지, 라벨 연결
+//  넘겨 받은 데이터를 연결
+//
 //  Created by Okrie on 2023/08/28.
 //
 

@@ -2,6 +2,9 @@
 //  MultipartImageControl.swift
 //  TodoList_TripleDB
 //
+//  image upload를 위한 Class Module
+//
+//
 //  Created by Okrie on 2023/08/29.
 //
 

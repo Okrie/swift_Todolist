@@ -2,6 +2,12 @@
 //  SettingViewController.swift
 //  TodoList_TripleDB
 //
+//  유저의 공유 및 일정 전체 비공유, 로그아웃을 위한 설정뷰
+//  Switch 를 이용하여 유저 공유 / 비공유 설정
+//  button을 이용하여 일정 전체 비공유 설정
+//  로그아웃 기능으로 유저 로그아웃
+//  값을 변경 할 때 마다 db 호출하여 값 변경
+//
 //  Created by Okrie on 2023/08/26.
 //
 

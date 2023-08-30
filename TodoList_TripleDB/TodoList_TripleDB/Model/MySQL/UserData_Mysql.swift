@@ -2,6 +2,9 @@
 //  UserData.swift
 //  TodoList_TripleDB
 //
+//  MySql Userdata Model
+//
+//
 //  Created by Okrie on 2023/08/27.
 //
 

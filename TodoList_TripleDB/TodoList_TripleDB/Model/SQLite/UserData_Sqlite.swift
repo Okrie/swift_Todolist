@@ -2,6 +2,9 @@
 //  UserData.swift
 //  TodoList_TripleDB
 //
+//  SQLite3 Userdata Model
+//
+//
 //  Created by Okrie on 2023/08/26.
 //
 

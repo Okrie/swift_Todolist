@@ -2,6 +2,13 @@
 //  RegisterViewController.swift
 //  TodoList_TripleDB
 //
+//  User Register를 위한 뷰
+//  ID 값은 db에서 가져온 값으로 비교하여 입력시에 실시간 가입 가능한 ID인지 판별
+//  PW 는 두개의 입력 값이 같은지 아닌지 비교
+//  유저의 일정 공유 유무를 Switch 로 구분
+//  위 조건을 만족 할 시 Register 버튼 활성화
+//  button 실행시 정상 정보 일 시 DB에 insert
+//
 //  Created by Okrie on 2023/08/28.
 //
 

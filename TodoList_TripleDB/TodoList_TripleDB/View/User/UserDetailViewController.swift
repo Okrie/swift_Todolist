@@ -2,6 +2,9 @@
 //  UserDetailViewController.swift
 //  TodoList_TripleDB
 //
+//  유저 중 공유한 유저의 리스트 중 공유한 일정 중 선택한 일정의 상세정보를 보여주는 뷰
+//  수정은 불가능하며 보기만 가능
+//
 //  Created by Okrie on 2023/08/26.
 //
 
