@@ -89,3 +89,4 @@ fastlane/test_output
 
 iOSInjectionProject/
 TodoList_TripleDB/TodoList_TripleDB/Model/.DS_Store
+TodoList_TripleDB/TodoList_TripleDB/GoogleService-Info.plist
