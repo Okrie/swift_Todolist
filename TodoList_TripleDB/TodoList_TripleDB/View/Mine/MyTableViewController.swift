@@ -2,44 +2,95 @@
 //  MyTableViewController.swift
 //  TodoList_TripleDB
 //
-//  Created by TJ on 2023/08/26.
+//  Created by Okrie on 2023/08/26.
 //
 
 import UIKit
 
 class MyTableViewController: UITableViewController {
-
+    
+    @IBOutlet var tvListView: UITableView!
+    @IBOutlet weak var myIndicator: UIActivityIndicatorView!
+    
+//    var todoList: [TodoList_MySQL] = []
+    var todoList: [TodoList_SQLite] = []
+//    let queryModel = TodoListDB_MYSQL()
+    let sqlQueryModel = TodoListDB_SQLITE()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        myIndicator.startAnimating()
+        myIndicator.isHidden = false
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "sgDetail"{
+            let cell = sender as! MyTableViewCell
+            let indexPath = tvListView.indexPath(for: cell)
+            
+            let detailView = segue.destination as! MyDetailViewController
+            detailView.receiveData = todoList[indexPath!.row]
+
+//            let url: URL = URL(string: todoList[indexPath!.row].imagename)!
+//            DispatchQueue.global().async {
+//                let data = try? Data(contentsOf: url)
+//                DispatchQueue.main.async {
+//                    detailView.imgView.image = UIImage(data: data!)
+//                }
+//            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        reloadValues()
+    }
+    
+    func reloadValues(){
+//        queryModel.delegate = self
+//        queryModel.selectAllDB(Message.id)
+        sqlQueryModel.delegate = self
+        sqlQueryModel.selectIDDB(id: Message.id)
+        tvListView.reloadData()
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return todoList.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
 
         // Configure the cell...
-
+        var content = cell.defaultContentConfiguration()
+//        let url = URL(string: todoList[indexPath.row].imagename)
+//        DispatchQueue.global().async {
+//            let data = try? Data(contentsOf: url!)
+//            DispatchQueue.main.async {
+//                content.image = UIImage(data: data!)
+//            }
+//        }
+        content.text = todoList[indexPath.row].title
+        content.image = UIImage(data: todoList[indexPath.row].image)
+        
+        cell.contentConfiguration = content
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -86,4 +137,21 @@ class MyTableViewController: UITableViewController {
     }
     */
 
+}
+
+//extension MyTableViewController: QueryModelTodoListMySQLProtocol{
+//    func downloadItem(items: [TodoList_MySQL]) {
+//        self.todoList = items
+//        self.tvListView.reloadData()
+//    }
+//}
+
+extension MyTableViewController: QueryModelSQLiteProtocol{
+    func downloadItem(items: [TodoList_SQLite]) {
+        self.todoList = items
+        self.tvListView.reloadData()
+        myIndicator.stopAnimating()
+        myIndicator.isHidden = true
+        
+    }
 }

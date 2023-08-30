@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  TodoList_TripleDB
 //
-//  Created by TJ on 2023/08/26.
+//  Created by Okrie on 2023/08/26.
 //
 
 import UIKit

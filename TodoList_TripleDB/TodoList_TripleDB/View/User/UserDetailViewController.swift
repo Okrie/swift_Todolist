@@ -2,16 +2,27 @@
 //  UserDetailViewController.swift
 //  TodoList_TripleDB
 //
-//  Created by TJ on 2023/08/26.
+//  Created by Okrie on 2023/08/26.
 //
 
 import UIKit
 
 class UserDetailViewController: UIViewController {
+    
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblContext: UILabel!
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var lblUser: UILabel!
+
+    var receivedDetailData: TodoList_SQLite = TodoList_SQLite(seq: "", userid: "", title: "", content: "", insertdate: "", isshare: "", imagename: "", image: Data(), invalidate: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        lblUser.text = "\(receivedDetailData.userid)'s TodoList"
+        lblTitle.text = receivedDetailData.title
+        lblContext.text = receivedDetailData.content
+        imgView.image = UIImage(data: receivedDetailData.image)
         // Do any additional setup after loading the view.
     }
     

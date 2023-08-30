@@ -8,6 +8,8 @@
 import Foundation
 
 class TodoList_Firebase{
+    var documentId: String
+    var seq: String
     var userid: String
     var title: String
     var content: String
@@ -15,7 +17,9 @@ class TodoList_Firebase{
     var isshare: String
     var imagename: String
     
-    init(userid: String, title: String, content: String, insertdate: String, isshare: String, imagename: String) {
+    init(documentId: String, seq: String, userid: String, title: String, content: String, insertdate: String, isshare: String, imagename: String) {
+        self.documentId = documentId
+        self.seq = seq
         self.userid = userid
         self.title = title
         self.content = content
@@ -23,5 +27,6 @@ class TodoList_Firebase{
         self.isshare = isshare
         self.imagename = imagename
     }
+    
 }
 
