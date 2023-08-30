@@ -88,3 +88,4 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+TodoList_TripleDB/TodoList_TripleDB/Model/.DS_Store
