@@ -46,7 +46,7 @@ class TodoListDB_MYSQL{
         do{
             let todolists = try decoder.decode(TodoListResults.self, from: data)
             for todo in todolists.results{
-                let query = TodoList_MySQL(seq: todo.seq, userid: todo.userid, title: todo.title, content: todo.content, insertdate: todo.insertdate, isshare: todo.isshare, imagename: todo.imagename, invalidate: todo.invalidate)
+                let query = TodoList_MySQL(seq: todo.seq, userid: todo.userid, title: todo.title, content: todo.content, insertdate: todo.insertdate, isshare: todo.isshare, imagename: todo.imagename, invalidate: todo.invalidate, isfinished: todo.isfinished)
                 locations.append(query)
             }
             

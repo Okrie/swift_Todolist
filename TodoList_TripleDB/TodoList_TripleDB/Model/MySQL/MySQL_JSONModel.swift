@@ -19,6 +19,7 @@ struct TodoListJSON: Codable{
     var isshare: String
     var imagename: String
     var invalidate: String
+    var isfinished: String
 }
 
 struct TodoListResults: Codable{

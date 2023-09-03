@@ -32,7 +32,7 @@ class TodoListDB_SQLITE{
         }
         
         // create table
-        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS todolist (seq INTEGER PRIMARY KEY AUTOINCREMENT, userid TEXT, title TEXT, content TEXT, insertdate TEXT, isshare TEXT, imagename TEXT, image BLOB, invalidate TEXT)", nil, nil, nil) != SQLITE_OK{
+        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS todolist (seq INTEGER PRIMARY KEY AUTOINCREMENT, userid TEXT, title TEXT, content TEXT, insertdate TEXT, isshare TEXT, imagename TEXT, image BLOB, invalidate TEXT, isfinished TEXT)", nil, nil, nil) != SQLITE_OK{
             let errMSG = String(cString: sqlite3_errmsg(db))
             print("Error creating table: \(errMSG)")
             return
@@ -61,8 +61,9 @@ class TodoListDB_SQLITE{
                 imageData = image
             }
             let invalidate = String(cString: sqlite3_column_text(stmt, 8))
+            let isfinished = String(cString: sqlite3_column_text(stmt, 9))
             
-            locations.append(TodoList_SQLite(seq: seq, userid: id, title: title, content: content, insertdate: insertdate, isshare: isshare, imagename: imagename, image: imageData!, invalidate: invalidate))
+            locations.append(TodoList_SQLite(seq: seq, userid: id, title: title, content: content, insertdate: insertdate, isshare: isshare, imagename: imagename, image: imageData!, invalidate: invalidate, isfinished: isfinished))
         }
         sqlite3_finalize(stmt)
         DispatchQueue.main.async {
@@ -94,9 +95,14 @@ class TodoListDB_SQLITE{
                 imageData = image
             }
             let invalidate = String(cString: sqlite3_column_text(stmt, 8))
+            let isfinished = String(cString: sqlite3_column_text(stmt, 9))
             
-            locations.append(TodoList_SQLite(seq: seq, userid: id, title: title, content: content, insertdate: insertdate, isshare: isshare, imagename: imagename, image: imageData!, invalidate: invalidate))
+            if(invalidate != "1"){
+                locations.append(TodoList_SQLite(seq: seq, userid: id, title: title, content: content, insertdate: insertdate, isshare: isshare, imagename: imagename, image: imageData!, invalidate: invalidate, isfinished: isfinished))
+            }
         }
+        
+        locations = locations.sorted(by: {Int($0.isfinished)! < Int($1.isfinished)!})
         sqlite3_finalize(stmt)
         DispatchQueue.main.async {
             self.delegate.downloadItem(items: locations)
@@ -128,8 +134,11 @@ class TodoListDB_SQLITE{
                 imageData = image
             }
             let invalidate = String(cString: sqlite3_column_text(stmt, 8))
+            let isfinished = String(cString: sqlite3_column_text(stmt, 9))
             
-            locations.append(TodoList_SQLite(seq: seq, userid: id, title: title, content: content, insertdate: insertdate, isshare: isshare, imagename: imagename, image: imageData!, invalidate: invalidate))
+            if(invalidate != "1"){
+                locations.append(TodoList_SQLite(seq: seq, userid: id, title: title, content: content, insertdate: insertdate, isshare: isshare, imagename: imagename, image: imageData!, invalidate: invalidate, isfinished: isfinished))
+            }
         }
         sqlite3_finalize(stmt)
         DispatchQueue.main.async {
@@ -158,7 +167,7 @@ class TodoListDB_SQLITE{
         var stmt: OpaquePointer?
         let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
         
-        let queryString = "INSERT INTO todolist (userid, title, content, insertdate, isshare, imagename, image, invalidate) VALUES (?, ?, ?, ?, ?, ?, ?, 0)"
+        let queryString = "INSERT INTO todolist (userid, title, content, insertdate, isshare, imagename, image, invalidate, isfinished) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)"
         
         sqlite3_prepare(db, queryString, -1, &stmt, nil)
         sqlite3_bind_text(stmt, 1, todo.userid, -1, SQLITE_TRANSIENT)
@@ -183,7 +192,7 @@ class TodoListDB_SQLITE{
         var stmt: OpaquePointer?
         let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
         
-        let queryString = "UPDATE todolist SET title = ?, content = ?, isshare = ?, imagename = ?, image = ? WHERE userid = ? AND seq = ?"
+        let queryString = "UPDATE todolist SET title = ?, content = ?, isshare = ?, imagename = ?, image = ?, isfinished = ? WHERE userid = ? AND seq = ?"
         
         sqlite3_prepare(db, queryString, -1, &stmt, nil)
         sqlite3_bind_text(stmt, 1, todo.title, -1, SQLITE_TRANSIENT)
@@ -191,8 +200,9 @@ class TodoListDB_SQLITE{
         sqlite3_bind_text(stmt, 3, todo.isshare, -1, SQLITE_TRANSIENT)
         sqlite3_bind_text(stmt, 4, todo.imagename, -1, SQLITE_TRANSIENT)
         sqlite3_bind_blob(stmt, 5, (todo.image as NSData).bytes, Int32(todo.image.count), SQLITE_TRANSIENT)
-        sqlite3_bind_text(stmt, 6, todo.userid, -1, SQLITE_TRANSIENT)
-        sqlite3_bind_text(stmt, 7, todo.seq, -1, SQLITE_TRANSIENT)
+        sqlite3_bind_text(stmt, 6, todo.isfinished, -1, SQLITE_TRANSIENT)
+        sqlite3_bind_text(stmt, 7, todo.userid, -1, SQLITE_TRANSIENT)
+        sqlite3_bind_text(stmt, 8, todo.seq, -1, SQLITE_TRANSIENT)
         
         if sqlite3_step(stmt) == SQLITE_DONE{
             return true
@@ -209,6 +219,26 @@ class TodoListDB_SQLITE{
         
         sqlite3_prepare(db, queryString, -1, &stmt, nil)
         sqlite3_bind_text(stmt, 1, id, -1, SQLITE_TRANSIENT)
+        
+        if sqlite3_step(stmt) == SQLITE_DONE{
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    // 2023-09-03 Finish TodoList
+    // ver0.2
+    func updateFinishedDB(_ id: String, seq: String, isfinised: String) -> Bool{
+        var stmt: OpaquePointer?
+        let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+        
+        let queryString = "UPDATE todolist SET isfinished = ? WHERE userid = ? AND seq = ?"
+        
+        sqlite3_prepare(db, queryString, -1, &stmt, nil)
+        sqlite3_bind_text(stmt, 1, isfinised, -1, SQLITE_TRANSIENT)
+        sqlite3_bind_text(stmt, 2, id, -1, SQLITE_TRANSIENT)
+        sqlite3_bind_text(stmt, 3, seq, -1, SQLITE_TRANSIENT)
         
         if sqlite3_step(stmt) == SQLITE_DONE{
             return true

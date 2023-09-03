@@ -16,13 +16,12 @@ class MyTableViewCell: UITableViewCell {
     @IBOutlet weak var myCellimageView: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
 
-    var data: TodoList_MySQL = TodoList_MySQL(seq: 0, userid: "", title: "", content: "", insertdate: "", isshare: "", imagename: "", invalidate: "")
+    var data: TodoList_MySQL = TodoList_MySQL(seq: 0, userid: "", title: "", content: "", insertdate: "", isshare: "", imagename: "", invalidate: "", isfinished: "0")
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         lblTitle.text = data.title
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,5 +29,7 @@ class MyTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }

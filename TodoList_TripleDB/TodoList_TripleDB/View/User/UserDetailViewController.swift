@@ -17,7 +17,7 @@ class UserDetailViewController: UIViewController {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblUser: UILabel!
 
-    var receivedDetailData: TodoList_SQLite = TodoList_SQLite(seq: "", userid: "", title: "", content: "", insertdate: "", isshare: "", imagename: "", image: Data(), invalidate: "")
+    var receivedDetailData: TodoList_SQLite = TodoList_SQLite(seq: "", userid: "", title: "", content: "", insertdate: "", isshare: "", imagename: "", image: Data(), invalidate: "", isfinished: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()

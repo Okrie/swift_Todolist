@@ -21,12 +21,16 @@ class MyDetailViewController: UIViewController {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var swDis: UISwitch!
     @IBOutlet weak var lblSwitch: UILabel!
+    @IBOutlet weak var swDone: UISwitch!
+    @IBOutlet weak var lblDone: UILabel!
+    
     
     let picker = UIImagePickerController()
     
 //    var receiveData: TodoList_MySQL = TodoList_MySQL(seq: 0, userid: "", title: "", content: "", insertdate: "", isshare: "", imagename: "", invalidate: "")
-    var receiveData: TodoList_SQLite = TodoList_SQLite(seq: "", userid: "", title: "", content: "", insertdate: "", isshare: "", imagename: "", image: Data(), invalidate: "")
-    var swOn: Bool = true
+    var receiveData: TodoList_SQLite = TodoList_SQLite(seq: "", userid: "", title: "", content: "", insertdate: "", isshare: "", imagename: "", image: Data(), invalidate: "", isfinished: "")
+    var swOn: Bool?
+    var isswDone: Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +38,28 @@ class MyDetailViewController: UIViewController {
         
         tfTitle.text = receiveData.title
         tfContext.text = receiveData.content
+        swOn = receiveData.isshare == "1" ? true : false
+        isswDone = receiveData.isfinished == "1" ? true : false
+        
         swDis.isOn = receiveData.isshare == "1" ? true : false
         lblSwitch.text = swDis.isOn ? "Public" : "Private"
         imgView.image = UIImage(data: receiveData.image)
+        
+        swDone.isOn = receiveData.isfinished == "1" ? true : false
+        lblDone.text = swDone.isOn ? "Done" : "Ing"
         // Do any additional setup after loading the view.
     }
     
     @IBAction func swDisc(_ sender: UISwitch) {
         swOn = sender.isOn
-        lblSwitch.text = swOn ? "Public" : "Private"
+        lblSwitch.text = swOn! ? "Public" : "Private"
     }
+    
+    @IBAction func swDonec(_ sender: UISwitch) {
+        isswDone = sender.isOn
+        lblDone.text = isswDone! ? "Done" : "Ing"
+    }
+    
     
     @IBAction func btnEditImg(_ sender: UIButton) {
         let alert =  UIAlertController(title: "Upload Image", message: "", preferredStyle: .actionSheet)
@@ -70,8 +86,9 @@ class MyDetailViewController: UIViewController {
         
         let queryModel = TodoListDB_SQLITE()
         queryModel.delegate = self
-        _ = queryModel.updateDB(TodoList_SQLite(seq: receiveData.seq, userid: Message.id, title: tfTitle.text!, content: tfContext.text!, insertdate: receiveData.insertdate, isshare: swOn ? "1" : "0", imagename: receiveData.imagename, image: receiveData.image, invalidate: receiveData.invalidate))
+        _ = queryModel.updateDB(TodoList_SQLite(seq: receiveData.seq, userid: Message.id, title: tfTitle.text!, content: tfContext.text!, insertdate: receiveData.insertdate, isshare: swOn! ? "1" : "0", imagename: receiveData.imagename, image: receiveData.image, invalidate: receiveData.invalidate, isfinished: isswDone! ? "1" : "0"))
         alertActions(title: "Update", message: "Success Update")
+        print("swOn = ", swOn!, ", isswDone = ", isswDone!)
     }
     
     @IBAction func btnDelete(_ sender: UIButton) {

@@ -31,6 +31,44 @@ class MyTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+//        makeLongTouch()
+    }
+    
+    // 2023-09-03 User Todolist done action
+    // Add Longpress Gesture
+    func makeLongTouch(){
+        let touchLong = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_ :)))
+        
+        touchLong.minimumPressDuration = 0.8
+        
+        self.tableView.addGestureRecognizer(touchLong)
+    }
+    
+    // 2023-09-03 User Todolist done action
+    // use Longpress Gesture > Done
+    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer){
+        if gestureRecognizer.state == .began{
+            let point = gestureRecognizer.location(in: self.tableView)
+            if let indexPath = self.tableView.indexPathForRow(at: point){
+                
+                
+                if let cell = self.tableView.cellForRow(at: indexPath){
+                    cell.alpha = 0.2
+                    cell.backgroundColor = UIColor.darkGray
+                    
+                    _ = sqlQueryModel.updateFinishedDB(Message.id, seq: todoList[indexPath.row].seq, isfinised: "1")
+                }
+            }
+        } else if gestureRecognizer.state == .changed{
+            let point = gestureRecognizer.location(in: self.tableView)
+            if let indexPath = self.tableView.indexPathForRow(at: point){
+                
+                if let cell = self.tableView.cellForRow(at: indexPath){
+                    cell.alpha = 1.0
+                    cell.backgroundColor = UIColor.clear
+                }
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -40,7 +78,7 @@ class MyTableViewController: UITableViewController {
             
             let detailView = segue.destination as! MyDetailViewController
             detailView.receiveData = todoList[indexPath!.row]
-
+            print("isshare = ", todoList[indexPath!.row].isshare, ", isfnisihed = ", todoList[indexPath!.row].isfinished)
 //            let url: URL = URL(string: todoList[indexPath!.row].imagename)!
 //            DispatchQueue.global().async {
 //                let data = try? Data(contentsOf: url)
@@ -52,7 +90,10 @@ class MyTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        reloadValues()
+        DispatchQueue.main.async {
+            self.reloadValues()
+        }
+        
     }
     
     func reloadValues(){
@@ -60,6 +101,7 @@ class MyTableViewController: UITableViewController {
 //        queryModel.selectAllDB(Message.id)
         sqlQueryModel.delegate = self
         sqlQueryModel.selectIDDB(id: Message.id)
+            
         tvListView.reloadData()
     }
 
@@ -92,6 +134,11 @@ class MyTableViewController: UITableViewController {
         content.image = UIImage(data: todoList[indexPath.row].image)
         
         cell.contentConfiguration = content
+        cell.backgroundColor = todoList[indexPath.row].isfinished == "1" ? UIColor.lightGray : UIColor.clear
+        cell.alpha = todoList[indexPath.row].isfinished == "1" ? 0.2 : 1.0
+        print(cell.alpha)
+        
+        
         return cell
     }
     
@@ -156,6 +203,5 @@ extension MyTableViewController: QueryModelSQLiteProtocol{
         self.tvListView.reloadData()
         myIndicator.stopAnimating()
         myIndicator.isHidden = true
-        
     }
 }

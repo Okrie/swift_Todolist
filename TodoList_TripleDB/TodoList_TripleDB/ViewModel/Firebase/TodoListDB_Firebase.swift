@@ -90,11 +90,13 @@ class TodoListDB_Firebase{
     func deleteItems(documentId: String) -> Bool{
         var status: Bool = true
         
-        db.collection("todolist").document(documentId).delete(){
+        db.collection("todolist").document(documentId).updateData([
+            "invalidate" : 1
+        ]){
             error in
             if error != nil{
                 status = false
-            } else{
+            }else{
                 status = true
             }
         }

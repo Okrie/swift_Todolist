@@ -33,6 +33,7 @@
 		325567D32A99CFEB0043D600 /* UserData_Sqlite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325567D22A99CFEB0043D600 /* UserData_Sqlite.swift */; };
 		325567D92A9B118C0043D600 /* TodoList_Mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325567D82A9B118C0043D600 /* TodoList_Mysql.swift */; };
 		325567DB2A9B11BC0043D600 /* UserData_Mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325567DA2A9B11BC0043D600 /* UserData_Mysql.swift */; };
+		326BC48A2AA3382F00E91DAB /* DateNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326BC4892AA3382F00E91DAB /* DateNow.swift */; };
 		32DBD51C2A9C2F1B00015409 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD51B2A9C2F1B00015409 /* LoginViewController.swift */; };
 		32DBD51F2A9C2F3200015409 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD51E2A9C2F3200015409 /* RegisterViewController.swift */; };
 		32DBD5212A9C34EA00015409 /* AlertModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD5202A9C34EA00015409 /* AlertModule.swift */; };
@@ -74,6 +75,7 @@
 		325567D22A99CFEB0043D600 /* UserData_Sqlite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData_Sqlite.swift; sourceTree = "<group>"; };
 		325567D82A9B118C0043D600 /* TodoList_Mysql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList_Mysql.swift; sourceTree = "<group>"; };
 		325567DA2A9B11BC0043D600 /* UserData_Mysql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData_Mysql.swift; sourceTree = "<group>"; };
+		326BC4892AA3382F00E91DAB /* DateNow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateNow.swift; sourceTree = "<group>"; };
 		32DBD51B2A9C2F1B00015409 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		32DBD51E2A9C2F3200015409 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		32DBD5202A9C34EA00015409 /* AlertModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModule.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				32DBD5202A9C34EA00015409 /* AlertModule.swift */,
 				32DBD5292A9C8FFD00015409 /* Message.swift */,
 				32DBD5372A9DA20900015409 /* MultipartImageControl.swift */,
+				326BC4892AA3382F00E91DAB /* DateNow.swift */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				32DBD52C2A9C914400015409 /* MyTableViewCell.swift in Sources */,
 				325567DB2A9B11BC0043D600 /* UserData_Mysql.swift in Sources */,
 				325567AE2A99C2900043D600 /* UserTableViewController.swift in Sources */,
+				326BC48A2AA3382F00E91DAB /* DateNow.swift in Sources */,
 				325567B52A99C6F60043D600 /* MyDetailViewController.swift in Sources */,
 				325567B02A99C2BC0043D600 /* MyViewController.swift in Sources */,
 				32DBD53C2A9DB9FF00015409 /* Image_Upload_Firebase.swift in Sources */,

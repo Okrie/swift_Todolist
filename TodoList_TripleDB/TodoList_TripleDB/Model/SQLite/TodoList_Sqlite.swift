@@ -20,8 +20,9 @@ class TodoList_SQLite{
     var imagename: String
     var image: Data
     var invalidate: String
+    var isfinished: String
     
-    init(seq: String, userid: String, title: String, content: String, insertdate: String, isshare: String, imagename: String, image: Data, invalidate: String) {
+    init(seq: String, userid: String, title: String, content: String, insertdate: String, isshare: String, imagename: String, image: Data, invalidate: String, isfinished: String) {
         self.seq = seq
         self.userid = userid
         self.title = title
@@ -31,5 +32,6 @@ class TodoList_SQLite{
         self.imagename = imagename
         self.image = image
         self.invalidate = invalidate
+        self.isfinished = isfinished
     }
 }

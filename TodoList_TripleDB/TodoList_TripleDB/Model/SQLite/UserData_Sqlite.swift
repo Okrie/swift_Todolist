@@ -3,7 +3,7 @@
 //  TodoList_TripleDB
 //
 //  SQLite3 Userdata Model
-//
+//  Not Use This Model
 //
 //  Created by Okrie on 2023/08/26.
 //

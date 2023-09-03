@@ -2,6 +2,11 @@
 //  RegisterViewController.swift
 //  TodoList_TripleDB
 //
+//
+//  2023-09-02 v0.2
+//  현재 시간을 가져오는 함수를 따로 Module로 빼서 현재 뷰에서 해당 함수 제거
+//
+//  2023-08-28 v0.1
 //  User Register를 위한 뷰
 //  ID 값은 db에서 가져온 값으로 비교하여 입력시에 실시간 가입 가능한 ID인지 판별
 //  PW 는 두개의 입력 값이 같은지 아닌지 비교
@@ -82,27 +87,13 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func btnRegister(_ sender: UIButton) {
-        _ = queryModel.insertDB(UserData_MySQL(userid: tfID.text!, userpw: tfPW1.text!, insertdate: self.dateNow(), invalidate: "0", isshare: isShare))
+        // 2023-09-02 dateNow 를 따로 모듈화 시키고 현재 뷰에서 해당 함수 제거
+        _ = queryModel.insertDB(UserData_MySQL(userid: tfID.text!, userpw: tfPW1.text!, insertdate: dateNow(), invalidate: "0", isshare: isShare))
         
         alertActions(title: "Sign Up", message: "Welcome Sign up!")
         
         self.navigationController?.popViewController(animated: true)
     }
-    
-    func dateNow() -> String{
-        let now = Date()
-
-        let date = DateFormatter()
-        date.locale = Locale(identifier: "ko_kr")
-        date.timeZone = TimeZone(abbreviation: "KST") // "2018-03-21 18:07:27"
-        //date.timeZone = TimeZone(abbreviation: "NZST") // "2018-03-21 22:06:39"
-        date.dateFormat = "yyyyMMddHHmm"
-
-        let kr = date.string(from: now)
-        print(kr)
-        return kr
-    }
-    
 
     /*
     // MARK: - Navigation

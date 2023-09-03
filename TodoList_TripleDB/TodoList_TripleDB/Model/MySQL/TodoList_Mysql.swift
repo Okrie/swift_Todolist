@@ -19,8 +19,9 @@ class TodoList_MySQL{
     var isshare: String
     var imagename: String
     var invalidate: String
+    var isfinished: String
     
-    init(seq: Int, userid: String, title: String, content: String, insertdate: String, isshare: String, imagename: String, invalidate: String) {
+    init(seq: Int, userid: String, title: String, content: String, insertdate: String, isshare: String, imagename: String, invalidate: String, isfinished: String) {
         self.seq = seq
         self.userid = userid
         self.title = title
@@ -29,5 +30,6 @@ class TodoList_MySQL{
         self.isshare = isshare
         self.imagename = imagename
         self.invalidate = invalidate
+        self.isfinished = isfinished
     }
 }
