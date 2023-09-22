@@ -8,7 +8,10 @@ Swift를 사용하여 Ios 어플리케이션 제작
 
 
 ##### 시연 영상
-<video src="https://drive.google.com/file/d/1pcdLfJ_qR3wfjAbwK0xTfpxOyN_1RIJm/view?usp=sharing"></video>
+<video src="https://drive.google.com/file/d/1pcdLfJ_qR3wfjAbwK0xTfpxOyN_1RIJm/view?usp=sharing" preload="none">
+![thumbnail](https://github.com/Okrie/swift_Todolist/blob/main/Thumbnail.png)
+</video>
+
 ---
 - Database    
     : Sqlite3    
