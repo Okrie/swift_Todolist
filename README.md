@@ -1,4 +1,5 @@
 # swift_Todolist
+
 ---
 ### TodoList 
 Swift를 사용하여 Ios 어플리케이션 제작    
@@ -8,18 +9,28 @@ Swift를 사용하여 Ios 어플리케이션 제작
 
 
 ##### 시연 영상
-<video src="https://drive.google.com/file/d/1pcdLfJ_qR3wfjAbwK0xTfpxOyN_1RIJm/view?usp=sharing" preload="none">
-![thumbnail](https://github.com/Okrie/swift_Todolist/blob/main/Thumbnail.png)
-</video>
+
+<a href="https://drive.google.com/file/d/1pcdLfJ_qR3wfjAbwK0xTfpxOyN_1RIJm/view?usp=sharing"><img src="https://github.com/Okrie/swift_Todolist/blob/main/Thumbnail.png" width="150" height="300"></a>
 
 ---
-- Database    
+
+### 기능 설명
+- 로그인한 '유저'가 공유 유무 판별하여 공유 일정 리스트에 해당 유저 이름으로 일정 공개 가능
+- 일정 별로 공유 기능으로 공개하고 싶은 일정, 공개 하고 싶지 않은 일정 개별 설정하여 공개 가능
+- 일정 완료 체크한 일정일 경우 본인 일정에서 최하단으로 정렬
+- 일정 검색 기능으로 타이틀 기준으로 본인이 작성한 일정을 검색하여 관리 가능
+- 공유 일정 리스트의 경우 보는 것은 가능하되, 수정은 불가능하게 막음
+
+
+---
+---
+#### Database    
     : Sqlite3    
     : MySQL    
     : Firebase    
     
     
-- 기술 스택
+#### 기술 스택
 <p align="left">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=git,github,vscode,firebase,mysql,sqlite,swift,java" />
